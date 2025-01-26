@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CloudFormation template to create an Amazon RDS instance for the fraud detection system.
+
+Resources:
+  FraudDetectionDBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Subnet group for Fraud Detection RDS
+      SubnetIds:
+        - subnet-xxxxxxxx  # Replace with your public/private subnet IDs
+        - subnet-yyyyyyyy
+      Tags:
+        - Key: Project
+          Value: AI-Fraud-Detection
+
+  FraudDetectionRDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: fraud-detection-db
+      AllocatedStorage: 20
+      DBInstanceClass: db.t3.micro  # Choose a class based on your workload
+      Engine: mysql  # Alternatively, use 'postgres'
+      MasterUsername: admin  # Replace with your database admin username
+      MasterUserPassword: YourSecurePassword123!  # Replace with a secure password
+      DBName: FraudDetectionDB
+      VPCSecurityGroups:
+        - sg-xxxxxxxx  # Replace with your security group ID
+      DBSubnetGroupName: !Ref FraudDetectionDBSubnetGroup
+      BackupRetentionPeriod: 7
+      MultiAZ: False
+      StorageType: gp2
+      PubliclyAccessible: False
+      Tags:
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: AI-Fraud-Detection
+
+Outputs:
+  RDSInstanceEndpoint:
+    Description: Endpoint of the RDS instance
+    Value: !GetAtt FraudDetectionRDSInstance.Endpoint.Address
+    Export:
+      Name: FraudDetectionDBEndpoint
+
+  RDSInstanceIdentifier:
+    Description: RDS Instance Identifier
+    Value: !Ref FraudDetectionRDSInstance
+    Export:
+      Name: FraudDetectionDBIdentifier

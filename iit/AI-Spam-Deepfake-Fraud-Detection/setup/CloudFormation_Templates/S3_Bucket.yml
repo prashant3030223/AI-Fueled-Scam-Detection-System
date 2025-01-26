@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CloudFormation template to create an S3 bucket for the fraud detection system.
+
+Resources:
+  FraudDetectionBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: your-project-fraud-detection-data
+      AccessControl: Private
+      VersioningConfiguration:
+        Status: Enabled
+      Tags:
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: AI-Fraud-Detection
+
+  S3BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref FraudDetectionBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowLambdaAccess
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: "s3:*"
+            Resource:
+              - !Sub "${FraudDetectionBucket.Arn}/*"
+              - !Sub "${FraudDetectionBucket.Arn}"
+
+Outputs:
+  BucketName:
+    Description: Name of the created S3 bucket
+    Value: !Ref FraudDetectionBucket
+    Export:
+      Name: FraudDetectionBucketName
+
+  BucketArn:
+    Description: ARN of the created S3 bucket
+    Value: !GetAtt FraudDetectionBucket.Arn
+    Export:
+      Name: FraudDetectionBucketArn

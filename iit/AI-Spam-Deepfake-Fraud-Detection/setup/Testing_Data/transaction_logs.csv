@@ -1,0 +1,6 @@
+transaction_id,user_id,amount,merchant,timestamp,status
+T001,U001,150.75,Amazon,2025-01-20 10:00:00,Completed
+T002,U002,3000.0,Tesla,2025-01-20 11:30:00,Completed
+T003,U001,87.2,Netflix,2025-01-20 12:15:00,Completed
+T004,U003,540.0,Walmart,2025-01-20 13:45:00,Failed
+T005,U004,1200.5,Google,2025-01-20 15:00:00,Pending
