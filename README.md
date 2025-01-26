@@ -32,7 +32,7 @@ What sets this project apart:
 ---
 
 ## 🏗️ Architecture
-![Workflow Diagram](docs/workflow_diagram.png)
+![Workflow Diagram](docs/Workflow_diagram.png)
 
 1. **Data Ingestion**: 
    - Calls and VKYC session data uploaded to Amazon S3.
