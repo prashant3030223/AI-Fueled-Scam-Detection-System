@@ -1,0 +1,101 @@
+{
+  "DashboardName": "FraudDetectionDashboard",
+  "DashboardBody": {
+    "widgets": [
+      {
+        "type": "text",
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 3,
+        "properties": {
+          "markdown": "# AI-Powered Fraud Detection System\nMonitoring dashboard for real-time system performance and alerts."
+        }
+      },
+      {
+        "type": "metric",
+        "x": 0,
+        "y": 3,
+        "width": 12,
+        "height": 6,
+        "properties": {
+          "metrics": [
+            [ "AWS/Lambda", "Invocations", "FunctionName", "SpamCallDetection" ],
+            [ ".", "Errors", ".", "." ],
+            [ "AWS/Lambda", "Invocations", "FunctionName", "DeepfakeDetection" ],
+            [ ".", "Errors", ".", "." ],
+            [ "AWS/Lambda", "Invocations", "FunctionName", "FraudAnalysis" ],
+            [ ".", "Errors", ".", "." ]
+          ],
+          "view": "timeSeries",
+          "stacked": false,
+          "region": "your-region",
+          "title": "Lambda Function Metrics"
+        }
+      },
+      {
+        "type": "metric",
+        "x": 12,
+        "y": 3,
+        "width": 12,
+        "height": 6,
+        "properties": {
+          "metrics": [
+            [ "AWS/SNS", "NumberOfNotificationsDelivered", "TopicName", "FraudAlertsTopic" ],
+            [ ".", "NumberOfNotificationsFailed", ".", "." ]
+          ],
+          "view": "timeSeries",
+          "stacked": false,
+          "region": "your-region",
+          "title": "SNS Notifications"
+        }
+      },
+      {
+        "type": "metric",
+        "x": 0,
+        "y": 9,
+        "width": 12,
+        "height": 6,
+        "properties": {
+          "metrics": [
+            [ "AWS/Glue", "GlueJobRunsCompleted", "JobName", "fraud-detection-etl" ],
+            [ ".", "GlueJobRunsFailed", ".", "." ]
+          ],
+          "view": "timeSeries",
+          "stacked": false,
+          "region": "your-region",
+          "title": "Glue Job Metrics"
+        }
+      },
+      {
+        "type": "metric",
+        "x": 12,
+        "y": 9,
+        "width": 12,
+        "height": 6,
+        "properties": {
+          "metrics": [
+            [ "AWS/SageMaker", "Invocations", "EndpointName", "fraud-detection-endpoint" ],
+            [ ".", "InvocationErrors", ".", "." ]
+          ],
+          "view": "timeSeries",
+          "stacked": false,
+          "region": "your-region",
+          "title": "SageMaker Endpoint Metrics"
+        }
+      },
+      {
+        "type": "log",
+        "x": 0,
+        "y": 15,
+        "width": 24,
+        "height": 6,
+        "properties": {
+          "query": "fields @timestamp, @message | filter @logStream like /SpamCallDetection/ or @logStream like /DeepfakeDetection/ or @logStream like /FraudAnalysis/",
+          "region": "your-region",
+          "title": "Lambda Function Logs"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "call_id": "T001",
+    "caller": "+1238967890",
+    "receiver": "+1984554321",
+    "call_duration": 155,
+    "call_timestamp": "2025-01-02 10:00:00",
+    "transcript": "Hello, this is an urgent message from your bank. Your account has been compromised. Please verify your details by pressing 1."
+  },
+  {
+    "call_id": "T002",
+    "caller": "+1984567890",
+    "receiver": "+1997654322",
+    "call_duration": 261,
+    "call_timestamp": "2025-01-02 10:15:00",
+    "transcript": "Congratulations! You've won a prize! To claim your prize, please call back immediately. This is an urgent offer."
+  },
+  {
+    "call_id": "T003",
+    "caller": "+2344567890",
+    "receiver": "+1988054323",
+    "call_duration": 510,
+    "call_timestamp": "2025-01-02 12:00:00",
+    "transcript": "Hi, just calling to check on your account activity. We noticed some unusual transactions. Please confirm your identity."
+  },
+  {
+    "call_id": "T004",
+    "caller": "+3234567890",
+    "receiver": "+1987654324",
+    "call_duration": 185,
+    "call_timestamp": "2025-01-02 12:30:00",
+    "transcript": "Your account has been flagged for suspicious activity. Please contact us to resolve this issue."
+  },
+  {
+    "call_id": "T005",
+    "caller": "+4234737890",
+    "receiver": "+1984654325",
+    "call_duration": 290,
+    "call_timestamp": "2025-01-02 4:45:00",
+    "transcript": "This is a security alert. Your account has been compromised. Please enter your account number to proceed."
+  }
+]
